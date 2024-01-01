@@ -10,6 +10,7 @@ Each cell has a number that tells you how many bombs that cell has in its surron
 ### Instructions for web
     Left click: Discover the cell. 
     Right click: Flag/unflag cell.
+
 ### Instructions for mobile
     Tap: Discover the cell. 
     Hold a cell: Flag/unflag cell.
