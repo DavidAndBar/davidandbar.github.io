@@ -194,7 +194,7 @@ const showWindow = (time, win, checkScore) => {
             })
         } else {
             $("body").append(`<div id="game-over-div"> <p>You ${win ? `won!</p>  <p>Time: ${time} s</p> </div>` : "lose!</p></div>"}`);
-            $("#reset-icon img").attr("src", `./icons/${win ? "winner-icon" : "dead-face"}.svg`);
+            $("#reset-icon img").attr("src", `../icons/${win ? "winner-icon" : "dead-face"}.svg`);
         }
         $("#mines-grid").css({"opacity": "0.4"});
         let leftPos = ($("#mines-grid").position().left)*1.0110605075 + parseFloat($("#mines-grid").css("border-width"));
@@ -251,7 +251,7 @@ const flagMine = (rowNumber, columnNumber) => {
     if (!$(`#${rowNumber} #${columnNumber}`).val()) {
         $(`#${rowNumber} #${columnNumber}`).val("X");
         $(`#${rowNumber} #${columnNumber}`).css({
-            backgroundImage: "url('./icons/skull-flag.svg')",
+            backgroundImage: "url('../icons/skull-flag.svg')",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center"
         });
@@ -351,7 +351,7 @@ const startover = () => {
     clearInterval(timerOn);
     $('#timer').find('.value').text(0);
     $(".ui-selectmenu-button-text").remove();
-    $("#reset-icon img").attr("src", "./icons/smile-face.svg");
+    $("#reset-icon img").attr("src", "../icons/smile-face.svg");
 }
 
 function updateDisplay() {
