@@ -28,6 +28,7 @@ li {
 }
 
 .w3-bar .w3-button {
+    font-size: medium;
     white-space: normal;
     padding: 0;
     padding-left: 3%;
