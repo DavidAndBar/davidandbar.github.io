@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const convert = () => {
+            const text = document.getElementById("textArea").value;
+            let newText = "";
+            for (let index = 0; index < text.length; index++) {
+                console.log(text[index]);
+                if (text[index] == "\n") {
+                    newText += ", ";
+                } else {
+                    newText += text[index];
+                }
+            }
+            document.body.innerHTML += `<p>${newText}</p>`;
+        }
+    </script>
+    <style>
+        body {
+            margin: auto;
+            width: 40%;
+        }
+        h2 {
+            text-align: center;
+        }
+        textarea {
+            width: 100%;
+        }
+        button {
+            width: 15%;
+            display: block;
+            margin: auto;
+        }
+        
+    </style>
+</head>
+<body>
+    <h2> Insert the list </h2>
+    <textarea id="textArea" rows="15"></textarea>
+    <button onclick="convert()"> Convert </button>
+</body>
+</html>
