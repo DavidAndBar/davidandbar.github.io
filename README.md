@@ -14,3 +14,7 @@ Each cell has a number that tells you how many bombs that cell has in its surron
 ### Instructions for mobile
     Tap: Discover the cell. 
     Hold a cell: Flag/unflag cell.
+
+## List Formatter:
+
+This is a tool to make it easy to convert a list separated by line breaks and returns a list separated by comma and a space [, ]. Open it [here] (https://davidandbar.github.io/NumbersFormatter/).
