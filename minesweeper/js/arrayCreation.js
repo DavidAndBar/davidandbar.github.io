@@ -42,7 +42,7 @@ const createGame = (HEIGHT, WIDTH, MINES_NUMBER, intRowNumber, intColumnNumber) 
                     !( x == intRowNumber && y == intColumnNumber + 1) &&
                     !( x == intRowNumber + 1 && y == intColumnNumber - 1) &&
                     !( x == intRowNumber + 1 && y == intColumnNumber) &&
-                    !( x == intRowNumber + 1 && y == intColumnNumber + 1);
+                    !( x == intRowNumber + 1 && y == intColumnNumber + 1); // Make sure neither the first clicked nor its surrondings are a bomb.
         if (minesList[x][y] != -1 && !( x == intRowNumber && y == intColumnNumber) && surrondings) {
             minesList[x][y] = -1;
             minesNumber--;
