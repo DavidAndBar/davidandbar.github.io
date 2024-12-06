@@ -1,10 +1,10 @@
-# Projects
+# David Barrios
 This is a folder containing different projects.
 
 ## Mineswepper 
-Minesweeper is a game built for web and mobile. Open it [here](https://davidandbar.github.io/minesweeper/).
+In this project, I built an interactive interface emulating the classic Microsoft Minesweeper using HTML, CSS, JavaScript, and JQuery; Also, icons were imported from FontAwesome. Check it [here](https://davidandbar.github.io/minesweeper/)!
 
-Discover all the mines without exploding. You can choose between 4 different difficulties: Beginner, Easy, Intermediate, and Expert.
+You can choose between 4 different difficulties: Beginner, Easy, Intermediate, and Expert.
 Each cell has a number that tells you how many bombs that cell has in its surroundings. Try to discover all the non-bomb cells.
 
 ### Instructions for web
@@ -17,4 +17,6 @@ Each cell has a number that tells you how many bombs that cell has in its surrou
 
 ## List Formatter:
 
-This is a tool that makes it easy to convert a list separated by line breaks and returns a list separated by a comma and a space [, ]. Open it [here](https://davidandbar.github.io/NumbersFormatter/).
+This basic tool makes it easy to convert a list separated by line breaks into a list separated by a comma and a space [, ]. Open it [here](https://davidandbar.github.io/NumbersFormatter/).
+> [!NOTE]
+> This project will be updated soon to add styles using Bootstrap and let the user choose any data separator.
