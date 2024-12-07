@@ -1,5 +1,5 @@
 # David Barrios
-This is a folder containing different projects.
+<hr>
 
 ## Mineswepper 
 In this project, I built an interactive interface emulating the classic Microsoft Minesweeper using HTML, CSS, JavaScript, and JQuery; Also, icons were imported from FontAwesome. Check it [here](https://davidandbar.github.io/minesweeper/)!
