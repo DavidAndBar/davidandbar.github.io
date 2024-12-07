@@ -15,8 +15,8 @@ Each cell has a number that tells you how many bombs that cell has in its surrou
     Tap: Discover the cell. 
     Hold a cell: Flag/unflag cell.
 
-## List Formatter:
+## Data Formatter:
 
-This basic tool makes it easy to convert a list separated by line breaks into a list separated by a comma and a space [, ]. Open it [here](https://davidandbar.github.io/NumbersFormatter/).
+This basic tool makes it easy to convert data separated for a specific separator into a customized separator. Open it [here](https://davidandbar.github.io/Formatter/).
 > [!NOTE]
 > This project will be updated soon to add styles using Bootstrap and let the user choose any data separator.
