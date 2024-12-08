@@ -17,6 +17,4 @@ Each cell has a number that tells you how many bombs that cell has in its surrou
 
 ## Data Formatter:
 
-This basic tool makes it easy to convert data separated for a specific separator into a customized separator. Open it [here](https://davidandbar.github.io/Formatter/).
-> [!NOTE]
-> This project will be updated soon to add styles using Bootstrap and let the user choose any data separator.
+This basic but helpful tool makes it easy to convert data separated for a specific separator into a customized separator. This interactive interface allows people to perform this repetitive task. Open it [here](https://davidandbar.github.io/Formatter/).

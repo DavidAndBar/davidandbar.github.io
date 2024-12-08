@@ -1,0 +1,54 @@
+h2 {
+    text-align: center;
+    width: 100%;
+}
+textarea {
+    width: 85%;
+}
+
+select {
+    width: 35%;
+    margin: 2% auto;
+}
+
+.input-label{
+    width: 100%;
+    text-align: center;
+}
+
+#app {
+    height: 94vh;
+    width: 98%;
+    margin: 3vh auto;
+}
+
+#content{
+    height: 100%;
+    margin: auto;
+    max-width: 50%;
+    min-width: 380px;
+}
+#content-title{
+    background: #e9ecef;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+#main-content{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
+#menu{
+    width: 85%;
+}
+#p-result{
+    margin-bottom: 0;
+}
+#result{
+    text-align: center;
+    width: 85%;
+    margin: 2% auto;
+}

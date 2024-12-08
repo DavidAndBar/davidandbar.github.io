@@ -4,96 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        const convert = () => {
-            // Pending the warning when user hasn't selected anything and the logic for the selected separator.
-            let initial = document.getElementById("initialSeparator").value;
-            let target = document.getElementById("newSeparator").value;
-            
-            let initialSpace = document.getElementById("spaceInitial").checked ? " " : "";
-            let targetSpace = document.getElementById("spaceTarget").checked ? " " : "";
-            
-            console.log("target: " + target);
-            if (!!!initial || !!!target) {
-                document.getElementById("result").innerHTML = `<div class="card text-bg-danger"><p id="p-result">You must add both initial and new separators.</p></div>`;
-            } else {
-                const text = document.getElementById("textArea").value;
-                if (!!text) {
-                    let newText = "";
-                    for (let index = 0; index < text.length; index++) {
-                        console.log("text:", text[index] + text[index+1]);
-                        console.log("comp:",(initial + initialSpace));
-                        let comp = !!!initialSpace ? text[index] : text[index] + text[index+1];
-                        if (comp == (initial + initialSpace)) {
-                            newText += target + targetSpace;
-                            index = !!initialSpace && !!!targetSpace ? index + 1: index; 
-                        } else {
-                            newText += text[index];
-                        }
-                    }
-                    document.getElementById("result").innerHTML = `<div class="card text-bg-success mb-3"><pre id="p-result">Transformed data: ${newText}</pre></div>`;    
-                } else {
-                    document.getElementById("result").innerHTML = `<div class="card text-bg-warning"><p id="p-result">Please insert some data.</p></div>`;
-                }
-            }
-        }
-    </script>
-    <style>
-        h2 {
-            text-align: center;
-            width: 100%;
-        }
-        textarea {
-            width: 85%;
-        }
-        
-        select {
-            width: 35%;
-            margin: 2% auto;
-        }
-
-        .input-label{
-            width: 100%;
-            text-align: center;
-        }
-
-        #app {
-            height: 94vh;
-            width: 98%;
-            margin: 3vh auto;
-        }
-
-        #content{
-            height: 100%;
-            margin: auto;
-            max-width: 50%;
-            min-width: 380px;
-        }
-        #content-title{
-            background: #e9ecef;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-        }
-        #main-content{
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            justify-content: center;
-        }
-        #menu{
-            width: 85%;
-        }
-        #p-result{
-            margin-bottom: 0;
-        }
-        #result{
-            text-align: center;
-            width: 85%;
-            margin: 2% auto;
-        }
-    </style>
+    <link rel="icon" type="image/x-icon" href="./icons/fav-icon.svg">
+    <link rel="stylesheet" href="./css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -116,14 +28,14 @@
                                 <option value=" ">Space ( )</option>
                                 <option value="custom">Custom separator</option>
                             </select>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="spaceInitial" checked>
+                            <div class="form-check form-switch mt-2">
+                                <input class="form-check-input" type="checkbox" role="switch" id="spaceInitial">
                                 <label class="form-check-label" for="spaceInitial">Include a space after my separator</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <!--<label for="newSeparator" class="form-label input-label">New separator</label>-->
-                            <select id="newSeparator" class="form-select border-end" aria-label="Default select example">
+                            <select id="newSeparator" class="form-select border-end" aria-label="Default select example" onfocus="this.oldvalue = this.value;">
                                 <option value="" selected>Select target separator:</option>
                                 <option value=",">,</option>
                                 <option value=".">.</option>
@@ -134,7 +46,7 @@
                                 <option value=" ">Space ( )</option>
                                 <option value="custom">Custom separator</option>
                             </select>
-                            <div class="form-check form-switch">
+                            <div class="form-check form-switch mt-2">
                                 <input class="form-check-input" type="checkbox" role="switch" id="spaceTarget" checked>
                                 <label class="form-check-label" for="spaceTarget">Include a space after my separator</label>
                             </div>
@@ -156,6 +68,7 @@
             </div>
         </div>
     </div>
+    <script src="./js/logic.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
