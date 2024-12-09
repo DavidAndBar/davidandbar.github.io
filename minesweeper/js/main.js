@@ -241,7 +241,7 @@ $(document).ready(() => {
         });
     });
 
-    $(".rows").css({
+    $("#mines-grid").css({
         "-webkit-user-select": "none",
         "-moz-user-select": "none",
         "-ms-user-select": "none",
