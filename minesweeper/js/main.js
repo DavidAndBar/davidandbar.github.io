@@ -241,6 +241,12 @@ $(document).ready(() => {
         });
     });
 
+    $("#grid-wrapper").css({
+        "-webkit-user-select": "none",
+        "-moz-user-select": "none",
+        "-ms-user-select": "none",
+        "user-select": "none"
+    });
     $("#mines-grid").css({
         "-webkit-user-select": "none",
         "-moz-user-select": "none",
