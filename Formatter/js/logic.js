@@ -24,7 +24,8 @@ const convert = () => {
                     newText += text[index];
                 }
             }
-            document.getElementById("result").innerHTML = `<div class="card text-bg-success mb-3"><pre id="p-result">Transformed data: ${newText}</pre></div>`;    
+            document.getElementById("result").innerHTML = `<div class="card text-bg-success mb-3"><pre id="p-result">Transformed data: 
+${newText}</pre></div>`;    
         } else {
             document.getElementById("result").innerHTML = `<div class="card text-bg-warning"><p id="p-result">Please insert some data.</p></div>`;
         }
