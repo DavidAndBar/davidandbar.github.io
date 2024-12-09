@@ -5,6 +5,11 @@ body {
     /*height: 100vh;*/
 }
 
+.btn-selected{
+    background-color: lightgrey;
+    color: black;
+}
+
 h2 {
     text-align: center;
     margin-top: 0;
@@ -23,8 +28,17 @@ p {
     margin: 0;
 }
 
-li {
-    font-size: 0.4em;
+table, th, td {
+    font-size: 0.5em;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    margin: 5% auto;
+    text-align: center;
+    width: 75%;
+    
 }
 
 .w3-bar .w3-button {

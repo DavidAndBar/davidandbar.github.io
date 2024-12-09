@@ -54,7 +54,3 @@ sel.forEach(element => {
         }
     })});
 
-/*for (document.getElementsByClassName("selectors")){
-    console.log(sel);
-    
-}*/
