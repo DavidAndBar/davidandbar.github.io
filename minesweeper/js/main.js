@@ -240,6 +240,16 @@ $(document).ready(() => {
             height: parseFloat($("#mines-grid").css("height"))
         });
     });
+    
+    $("html").css({
+        "-webkit-touch-callout": "none",
+        "-webkit-user-select": "none",
+        "-khtml-user-select": "none",
+        "-moz-user-select": "none",
+        "-ms-user-select": "none",
+        "user-select": "none",
+        "-webkit-tap-highlight-color": "rgba(0,0,0,0)",
+    });
 
     $("#grid-wrapper").css({
         "-webkit-user-select": "none",
