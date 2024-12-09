@@ -241,7 +241,7 @@ $(document).ready(() => {
         });
     });
 
-    $("html").css({
+    $(".mine").css({
         "-webkit-user-select": "none",
         "-moz-user-select": "none",
         "-ms-user-select": "none",

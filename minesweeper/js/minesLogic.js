@@ -5,7 +5,6 @@ const clickMine = (event, HEIGHT, WIDTH, MINES_NUMBER) => {
     if (event.which == 1 && $(`#${rowNumber} #${columnNumber}`).val() != "X") {
         leftClick(rowNumber, columnNumber);
     } else if (event.which == 3) {
-        console.log(event);
         flagMine(rowNumber, columnNumber);
     }
 }
@@ -112,6 +111,5 @@ const flagMine = (rowNumber, columnNumber) => {
         minesDiscovered++;
         $('#div-mines-discovered').text(minesDiscovered);
     }
-    console.log("flag");
     
 }
