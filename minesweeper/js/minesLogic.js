@@ -1,10 +1,14 @@
 const clickMine = (event, HEIGHT, WIDTH, MINES_NUMBER) => {
     let rowNumber = event.target.parentElement.id;
     let columnNumber = event.target.id;
-
-    if (event.which == 1 && $(`#${rowNumber} #${columnNumber}`).val() != "X") {
+    console.log(INVERTCLICK);
+    console.log("event: ", event.which);
+    
+    let primaryBtn = !!!INVERTCLICK ? event.which == 1 :  event.which == 3;
+    let secBtn = !!!INVERTCLICK ?  event.which == 3: event.which == 1 ;
+    if (primaryBtn && $(`#${rowNumber} #${columnNumber}`).val() != "X") {
         leftClick(rowNumber, columnNumber);
-    } else if (event.which == 3) {
+    } else if (secBtn) {
         flagMine(rowNumber, columnNumber);
     }
 }

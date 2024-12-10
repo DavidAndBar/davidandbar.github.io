@@ -253,3 +253,7 @@ $(document).ready(() => {
     });
 
 })
+
+const changeTaps = () =>{
+    INVERTCLICK = !!!INVERTCLICK
+}
