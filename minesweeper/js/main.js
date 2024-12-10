@@ -253,35 +253,3 @@ $(document).ready(() => {
     });
 
 })
-
-const changeTaps = ()=>{
-    INVERTCLICK = !!!INVERTCLICK;
-
-
-    if (document.querySelector("#invert").checked) {
-        $('.mine').on("taphold", (event) => {
-            clickMine(event, HEIGHT, WIDTH, MINES_NUMBER);
-        })
-        
-        $('.mine').on("mousedown",(event) => {
-            if(window.screen.width < 798){
-                let rowNumber = event.target.parentElement.id;
-                let columnNumber = event.target.id;
-                flagMine(rowNumber, columnNumber);
-            }
-        });
-    } else {
-        $('.mine').on("mousedown", (event) => {
-            clickMine(event, HEIGHT, WIDTH, MINES_NUMBER);
-        })
-        
-        $('.mine').on("taphold",(event) => {
-            if(window.screen.width < 798){
-                let rowNumber = event.target.parentElement.id;
-                let columnNumber = event.target.id;
-                flagMine(rowNumber, columnNumber);
-            }
-        });
-    }
-
-}
