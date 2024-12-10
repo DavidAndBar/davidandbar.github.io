@@ -4,6 +4,7 @@ let timer;
 var HEIGHT; // Beg: 10 Easy: 14 Inter: 20 Exp: 26
 var WIDTH; // Beg: 8 Easy: 9 Inter: 15 Exp: 19
 var MINES_NUMBER; // Beg: 7 Easy: 15 Inter: 40 Exp: 99
+var INVERTCLICK;
 var mineFontSize;
 var startTime;
 var timerOn;
@@ -175,7 +176,7 @@ const showWindow = (time, win, checkScore) => {
                     $("#Beginner-list table tbody").append(`<tr> <td>${e.name}</td><td>${e.time} s</td>`)
                 }
             })
-            $("#mines-grid").css({"opacity": "0.4"});
+            $("#mines-grid").css({"opacity": "0.0"});
         } else {
             if (!win){
                 for (let i = 0; i < minesGame.length; i++) {
@@ -190,7 +191,7 @@ const showWindow = (time, win, checkScore) => {
                     }
                 }
             }
-            $("body").append(`<div id="game-over-div" class="gameover">${win ? `<p>You won!</p>  <p>Time: ${time} s</p> </div>` : "</div>"}`);
+            $("body").append(`<div id="game-over-div" class="gameover">${win ? `<p>Time: ${time} s</p> </div>` : "</div>"}`);
             $("#reset-icon img").attr("src", `./icons/${win ? "winner-icon" : "dead-face"}.svg`);
         }
         let leftPos = ($("#mines-grid").position().left)*1.0110605075 + parseFloat($("#mines-grid").css("border-width"));
@@ -251,29 +252,37 @@ $(document).ready(() => {
         "-webkit-tap-highlight-color": "rgba(0,0,0,0)",
     });
 
-    $("#grid-wrapper").css({
-        "-webkit-user-select": "none",
-        "-moz-user-select": "none",
-        "-ms-user-select": "none",
-        "user-select": "none"
-    });
-    $("#mines-grid").css({
-        "-webkit-user-select": "none",
-        "-moz-user-select": "none",
-        "-ms-user-select": "none",
-        "user-select": "none"
-    });
-    $(".rows").css({
-        "-webkit-user-select": "none",
-        "-moz-user-select": "none",
-        "-ms-user-select": "none",
-        "user-select": "none"
-    });
-    $(".mine").css({
-        "-webkit-user-select": "none",
-        "-moz-user-select": "none",
-        "-ms-user-select": "none",
-        "user-select": "none"
-    });
-
 })
+
+const changeTaps = ()=>{
+    INVERTCLICK = !!!INVERTCLICK;
+
+    $('.mine').off()
+
+    if (document.querySelector("#invert").checked) {
+        $('.mine').on("taphold", (event) => {
+            clickMine(event, HEIGHT, WIDTH, MINES_NUMBER);
+        })
+        
+        $('.mine').on("mousedown",(event) => {
+            if(window.screen.width < 798){
+                let rowNumber = event.target.parentElement.id;
+                let columnNumber = event.target.id;
+                flagMine(rowNumber, columnNumber);
+            }
+        });
+    } else {
+        $('.mine').on("mousedown", (event) => {
+            clickMine(event, HEIGHT, WIDTH, MINES_NUMBER);
+        })
+        
+        $('.mine').on("taphold",(event) => {
+            if(window.screen.width < 798){
+                let rowNumber = event.target.parentElement.id;
+                let columnNumber = event.target.id;
+                flagMine(rowNumber, columnNumber);
+            }
+        });
+    }
+
+}

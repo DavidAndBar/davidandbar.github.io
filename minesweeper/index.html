@@ -15,9 +15,9 @@
     <title>Minesweeper</title>
 </head>
 <body>
-    <div id="game-screen">
+    <div id="game-screen"> 
         <div id="board">
-            <h2> -- Minesweeper -- </h2>
+            <h2> Minesweeper </h2>
             <div id="header-top">
                 <button type="button" onclick="showWindow(0, false, true)"> High Scores: </button>
                 <div id="reset-button">
@@ -30,14 +30,17 @@
                 </div>
             </div>
             <div id="header">
-                <!-- <div>
-                    <h3> Mines' Table Header </h3>
-                </div> --> 
-                <div id="div-mines-discovered">
+                <div id="div-mines-discovered" class="header-buttons">
                     0
                 </div>
-                <button id="reset-icon" type="button" onclick="startover()"><img src="./icons/smile-face.svg"></button>
-                <div id="timer"><span class="value">0</span> s</div>
+                <div id="interact-btns" class="header-buttons">
+                    <button id="reset-icon" type="button" onclick="startover()"><img src="./icons/smile-face.svg"></button>
+                    <label class="switch" title="Invert the pointer">
+                        <input id="invert" type="checkbox" value="true" onchange="changeTaps()">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div id="timer" class="header-buttons"><span class="value">0</span> s</div>
             </div>
             <div id="grid-wrapper"><div id="mines-grid"></div></div>
         </div>

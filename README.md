@@ -2,8 +2,12 @@
 <hr>
 
 ## Mineswepper 
-In this project, I built an interactive interface emulating the classic Microsoft Minesweeper using HTML, CSS, JavaScript, and JQuery; Also, icons were imported from FontAwesome. Check it [here](https://davidandbar.github.io/minesweeper/)!
 
+### Overview:
+This project it's an interactive interface emulating the classic Microsoft Minesweeper using HTML, CSS, JavaScript, and JQuery; Also, icons were imported from FontAwesome. Check it [here](https://davidandbar.github.io/minesweeper/)!
+
+
+### How it works:
 You can choose between 4 different difficulties: Beginner, Easy, Intermediate, and Expert.
 Each cell has a number that tells you how many bombs that cell has in its surroundings. Try to discover all the non-bomb cells.
 
