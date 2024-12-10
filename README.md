@@ -19,7 +19,7 @@ Each cell has a number that tells you how many bombs that cell has in its surrou
     Tap: Discover the cell. 
     Hold a cell: Flag/unflag cell.
 
-*Click in the slider to safely flag the bombs with one tap (or with the left click in the web)!
+*Click in the slider to safely flag the bombs with one tap! (or with the left click in the web)
 
 ## Data Formatter:
 
