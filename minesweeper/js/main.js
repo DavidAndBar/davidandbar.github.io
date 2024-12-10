@@ -257,7 +257,6 @@ $(document).ready(() => {
 const changeTaps = ()=>{
     INVERTCLICK = !!!INVERTCLICK;
 
-    $('.mine').off()
 
     if (document.querySelector("#invert").checked) {
         $('.mine').on("taphold", (event) => {
