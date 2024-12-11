@@ -252,6 +252,9 @@ $(document).ready(() => {
         "-webkit-tap-highlight-color": "rgba(0,0,0,0)",
     });
 
+    $('#alert-flag').css("height", parseInt($('#header-top').css("height"))*2) 
+    
+    console.log(parseInt($('#header-top').css("height"))*2);
 })
 
 const changeTaps = () =>{

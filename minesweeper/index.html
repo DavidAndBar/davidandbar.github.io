@@ -19,7 +19,7 @@
         <div id="board">
             <h2> Minesweeper </h2>
             <div id="header-top">
-                <div id="alert-flag">Discovering flags mode <span id="alert-msg"></span></div>
+                <div id="alert-flag"><span><img src="./icons/info.svg" height="100%"></span><p style="display:inline"> Discovering flags mode <span id="alert-msg"></span></p></div>
                 <button type="button" onclick="showWindow(0, false, true)"> High Scores: </button>
                 <div id="reset-button">
                     <select name="difficulty" id="difficulty">
@@ -36,7 +36,7 @@
                 </div>
                 <div id="interact-btns" class="header-buttons">
                     <button id="reset-icon" type="button" onclick="startover()"><img src="./icons/smile-face.svg"></button>
-                    <label class="switch" title="Invert the pointer">
+                    <label class="switch" title="Invert the main action">
                         <input id="invert" type="checkbox" value="true" onchange="changeTaps()">
                         <span class="slider round"></span>
                     </label>
