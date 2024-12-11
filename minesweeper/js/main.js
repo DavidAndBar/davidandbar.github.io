@@ -256,4 +256,6 @@ $(document).ready(() => {
 
 const changeTaps = () =>{
     INVERTCLICK = !!!INVERTCLICK
+    document.getElementById("alert-msg").innerText = INVERTCLICK ? "activated" : "deactivated";
+    $('#alert-flag').fadeIn('fast').delay(1000).fadeOut('slow');
 }
