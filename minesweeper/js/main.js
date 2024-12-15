@@ -85,6 +85,9 @@ const newGame = (difficulty) => {
     $("#mines-grid").css({"opacity": "1"})
 
     $("#board").css({"width": `${sizeMine*WIDTH*1.30}px`})
+    // Turn the inverter switch back to false position
+    INVERTCLICK = false;
+    document.querySelector("#invert").checked = false;
 }
 
 const deleteGame = () => {
@@ -190,11 +193,24 @@ const showWindow = (time, win, checkScore) => {
                         }
                     }
                 }
+            } else {
+                for (let i = 0; i < minesGame.length; i++) {
+                    for (let j = 0; j < minesGame[i].length; j++) {
+                        if(minesGame[i][j] === -1){
+                            $(`#r${i} #c${j}`).css({
+                                backgroundImage: "url('./icons/skull-flag.svg')",
+                                backgroundRepeat: "no-repeat",
+                                backgroundPosition: "center"
+                            });
+                        }
+                    }
+                }
+                
             }
-            $("body").append(`<div id="game-over-div" class="gameover">${win ? `<p>Time: ${time} s</p> </div>` : "</div>"}`);
+            $("body").append(`<div id="game-over-div" class="gameover"></div>`);
             $("#reset-icon img").attr("src", `./icons/${win ? "winner-icon" : "dead-face"}.svg`);
         }
-        let leftPos = ($("#mines-grid").position().left)*1.0110605075 + parseFloat($("#mines-grid").css("border-width"));
+        let leftPos = ($("#mines-grid").position().left) + parseFloat($("#mines-grid").css("border-width"));
         $("#game-over-div").css({
             top: $("#mines-grid").position().top,
             left: leftPos,
@@ -252,9 +268,8 @@ $(document).ready(() => {
         "-webkit-tap-highlight-color": "rgba(0,0,0,0)",
     });
 
-    $('#alert-flag').css("height", parseInt($('#header-top').css("height"))*2) 
+    $('#alert-flag').css("height", parseInt($('#header-top').css("height"))*1.5) 
     
-    console.log(parseInt($('#header-top').css("height"))*2);
 })
 
 const changeTaps = () =>{

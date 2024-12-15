@@ -30,6 +30,7 @@ const checkCell = (rowNumber, columnNumber, HEIGHT, WIDTH, MINES_NUMBER,) => {
             backgroundColor: "red"
         });
         showWindow(0, false, false);
+        showAlert(false)
     } else if (number == 0) {
         $(`#${rowNumber} #${columnNumber}`).val(number).addClass("mine-opened");
         
@@ -90,6 +91,7 @@ const checkWin = (HEIGHT, WIDTH, MINES_NUMBER) => {
         let time = (parseFloat($('#timer').find('.value').text())).toFixed(2);
         showWindow(time, true, false);
         setTimeout(setHighScore, 50, time);
+        showAlert(true)
     }
 }
 
@@ -114,4 +116,16 @@ const flagMine = (rowNumber, columnNumber) => {
         $('#div-mines-discovered').text(minesDiscovered);
     }
     
+}
+
+const showAlert = (win) => {
+    if (win) {
+        document.querySelector('#game-over-flag span img').src = "./icons/winner-icon.svg"
+        document.getElementById("game-over-msg").innerText = "won!";
+        $('#game-over-flag').fadeIn('fast').delay(1000).fadeOut('slow');
+    } else {
+        document.querySelector('#game-over-flag span img').src = "./icons/dead-face.svg"
+        document.getElementById("game-over-msg").innerText = "lost!";
+        $('#game-over-flag').fadeIn('fast').delay(1000).fadeOut('slow');
+    }
 }

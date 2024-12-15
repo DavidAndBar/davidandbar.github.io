@@ -1,9 +1,9 @@
-#alert-flag {
+#alert-flag, #game-over-flag {
     border: solid #052c65 1px;
     border-radius: 5px;
     background-color: #cfe2ff;
     display: none;
-    padding: 10px;
+    padding: 5px;
     position: absolute;
     z-index: 1;
 }
