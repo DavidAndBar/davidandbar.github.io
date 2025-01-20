@@ -49,7 +49,7 @@ The Separator Transformer Tool is a simple, intuitive webpage that allows users 
 ### Audience:
 This tool is ideal for professionals, students, and developers working with structured data, making data cleaning and formatting tasks more efficient. Open it [here](https://davidandbar.github.io/Formatter/).
 
-## Data Formatter:
+## To-Do-List:
 
 ### Overview:
 This To-Do List is a powerful and secure task management webpage designed to help the user to stay organized and productive. With features like user authentication, support for multiple lists, and seamless cross-device synchronization, this application makes task management simple and efficient. Also, responsive design was used to ensure the a mobile-friendly layout.
@@ -74,4 +74,11 @@ This To-Do List is a powerful and secure task management webpage designed to hel
 ### Hosting and Deployment:
 - Frontend and backend hosted on Azure, ensuring high availability, scalability, and performance.
 
-Open it here [here](https://thankful-forest-0df18890f.4.azurestaticapps.net/).
+### Technologies Used:
+
+Frontend: React (for dynamic and responsive user interfaces).
+Backend: Express.js (for secure and scalable API endpoints).
+Database: MongoDB (for efficient and flexible data storage).
+Hosting: Azure (for hosting both backend and frontend).
+
+Open it [here](https://thankful-forest-0df18890f.4.azurestaticapps.net/).
