@@ -76,9 +76,9 @@ This To-Do List is a powerful and secure task management webpage designed to hel
 
 ### Technologies Used:
 
-Frontend: React (for dynamic and responsive user interfaces).
-Backend: Express.js (for secure and scalable API endpoints).
-Database: MongoDB (for efficient and flexible data storage).
-Hosting: Azure (for hosting both backend and frontend).
+- Frontend: React (for dynamic and responsive user interfaces).
+- Backend: Express.js (for secure and scalable API endpoints).
+- Database: MongoDB (for efficient and flexible data storage).
+- Hosting: Azure (for hosting both backend and frontend).
 
 Open it [here](https://thankful-forest-0df18890f.4.azurestaticapps.net/).
