@@ -1,7 +1,7 @@
 # David Barrios
 <hr>
 
-## Mineswepper 
+## [Mineswepper](https://davidandbar.github.io/minesweeper/)
 
 ### Overview:
 This project it's an interactive interface emulating the classic Microsoft Minesweeper using HTML, CSS, JavaScript, and JQuery; Also, icons were imported from FontAwesome. Check it [here](https://davidandbar.github.io/minesweeper/)!
@@ -21,7 +21,7 @@ Each cell has a number that tells you how many bombs that cell has in its surrou
 
 *Click in the slider to safely flag the bombs with one tap! (or with the left click in the web)
 
-## Data Formatter:
+## [Data Formatter](https://davidandbar.github.io/Formatter/):
 
 ### Overview:
 The Separator Transformer Tool is a simple, intuitive webpage that allows users to transform their data from one delimiter format to another effortlessly. Whether you're dealing with CSV files, text lists, or any other type of data, this tool makes reformatting quick and seamless.
@@ -49,7 +49,7 @@ The Separator Transformer Tool is a simple, intuitive webpage that allows users 
 ### Audience:
 This tool is ideal for professionals, students, and developers working with structured data, making data cleaning and formatting tasks more efficient. Open it [here](https://davidandbar.github.io/Formatter/).
 
-## To-Do-List:
+## [To-Do-List](https://thankful-forest-0df18890f.4.azurestaticapps.net/):
 
 ### Overview:
 This To-Do List is a powerful and secure task management webpage designed to help the user to stay organized and productive. With features like user authentication, support for multiple lists, and seamless cross-device synchronization, this application makes task management simple and efficient. Also, responsive design was used to ensure the a mobile-friendly layout.
@@ -81,4 +81,4 @@ This To-Do List is a powerful and secure task management webpage designed to hel
 - Database: MongoDB (for efficient and flexible data storage).
 - Hosting: Azure (for hosting both backend and frontend).
 
-Open it [here](https://thankful-forest-0df18890f.4.azurestaticapps.net/).
+Check it [here](https://thankful-forest-0df18890f.4.azurestaticapps.net/).
