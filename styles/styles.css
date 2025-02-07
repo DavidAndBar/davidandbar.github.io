@@ -1,0 +1,369 @@
+/* Semantic styles */
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+a {
+    color: #123524;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+body {
+    font: 14px / 1.5 "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #999393;
+}
+
+header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+nav {
+    align-items: center;
+    background-color: #123524;
+    display: flex;
+    justify-content: space-between;
+    height: 46px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+nav > * {
+    color: white!important ;
+}
+
+h1, h2, h3, h4, hr, p, ul {
+    margin-bottom: 20px;
+}
+
+h1, h3 {
+    color: black;
+}
+
+header :where(h2,h3) {
+    color: #123524;
+}
+
+footer {
+    text-align: center;
+    width: 100%;
+}
+
+/* Class styles */
+.arrow > img {
+    width: 20px;
+}
+
+.arrow {
+    width: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.arrow:hover {
+    opacity: 0.5;
+}
+
+.arrow-left{
+    background-image: linear-gradient(to right, #006D5B , white);
+    justify-content: end;
+}
+
+.arrow-right{
+    background-image: linear-gradient(to left, #006D5B , white);
+}
+
+.cards {
+    display: flex;
+    overflow: hidden;
+    width: 345px;
+}
+
+.card:first-child {
+    margin-left: 7.5px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    justify-content: center;
+    text-align: center;
+}
+
+.card *{
+    margin: 0;
+}
+
+
+.card > .tech-img > img {
+    height: 100px;
+    width: 100px;
+}
+
+#technologies {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-div {
+    margin-top: 20px;
+}
+
+.project-info{
+    display: none;
+    margin: 10px;
+}
+
+.project-selector {
+    color: black;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.wrapper {
+    margin: 46px auto;
+    width: 900px;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    margin-left: -15px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.work {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: solid #123524 2px;
+    margin-bottom: 1rem;
+}
+
+.work:last-child {
+    border: none;
+}
+
+.work-header {
+    width: 50%;
+}
+
+.work-date {
+    align-content: center;
+    justify-items: center;
+    text-align: end;
+    width: 50%;
+}
+
+/* id styles */
+
+#experience {
+    width: 650px;
+    margin: auto;
+}
+
+#experience p {
+    margin: 0;
+}
+
+#experience h1 {
+    text-align: center;
+}
+
+#important-links {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: 1rem;
+}
+
+#important-links > div {
+    align-items: center;
+    display: flex;
+    height: 46px;
+    margin-right: 10px;
+    width: 46px;
+    justify-content: center;
+}
+
+#important-links > div > a > svg {
+    height: 30px;
+    width: 30px;
+}
+
+#important-links > div > a  {
+    display: flex;
+}
+
+#list-web-projects :where(p, div) {
+    margin-bottom: 0;
+}
+
+#list-web-projects > div > p {
+    align-content: center;
+    height: 3rem;
+}
+
+nav * {
+    margin: 0;
+    text-align: center;
+}
+
+#page-content {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+#resume-download {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    margin-bottom: 0px;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+#page-content > div > p > a {
+    color: white;
+}
+
+#page-content > div > p > a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+#projects {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    margin-top: 2rem;
+}
+
+#project-header {
+    background-color: #123524;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-align: center;
+}
+
+#project-header * {
+    color: white;
+}
+
+#project-header > h1 {
+    margin-top: 50px;
+}
+
+#project-section {
+    border: #123524 solid 4px;
+    overflow: auto;
+    height: 350px;
+    width: 600px;
+}
+
+#page-content > div:hover, #important-links > div:hover{
+    background-color: grey;
+}
+
+#resume-icon {
+    display: none;
+}
+
+#summary {
+    padding: 10px;
+    width: 250px;
+}
+
+
+/*Responsive design*/
+
+@media screen and (max-width: 400px)  {
+    /* Nav */
+    #resume-download {
+        display: none;
+    }
+
+    #resume-icon {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    #resume-icon :where(a > svg, a) {
+        height: 30px;
+        width: 30px;
+    }
+    
+
+
+    nav > h1 {
+        flex-grow: 1;
+        text-align: center;
+    }
+    
+    /* Header */
+    .wrapper {
+        max-width: 100%;
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    .cards {
+        width: 230px;
+    }
+
+    header h2 {
+        text-align: center;
+    }
+
+    /* Section 1: projects */
+
+    #projects {
+        flex-direction: column-reverse;
+    }
+
+    #project-section {
+        height: 100%;
+        overflow: inherit;
+        width: 100%;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+    }
+
+    #experience {
+        width: 100%;
+    }
+
+    .work-header {
+        padding-left: 1rem;
+    }
+
+}
