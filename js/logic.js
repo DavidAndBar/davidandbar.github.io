@@ -33,7 +33,7 @@ const movePanel = (e) =>{
             behavior: "smooth"
         })
     } else {
-        let overset = e.id === "right" ? 15 : scrolled > 115 ? -15 : 0;
+        let overset = 0 //e.id === "right" ? 15 : scrolled > 115 ? -15 : 0;
         let move = e.id === "right" ? 230 : -230 ;
         document.getElementById("cards").scrollBy({
             top: 0,
@@ -41,13 +41,13 @@ const movePanel = (e) =>{
             behavior: "smooth"
         })
 
-        setTimeout(() => {
+        /*setTimeout(() => {
             document.getElementById("cards").scrollBy({
                 top: 0,
                 left: -overset,
                 behavior: "smooth"
             })
-        }, 400)
+        }, 400)*/
     }
 }
 
