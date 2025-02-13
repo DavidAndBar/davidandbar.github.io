@@ -123,9 +123,9 @@ footer {
 }
 
 .project-selector {
-    color: black;
     cursor: pointer;
     margin-bottom: 10px;
+    flex-grow: 1;
 }
 
 .wrapper {
@@ -354,6 +354,10 @@ nav * {
         border-left: none;
         border-right: none;
         border-top: none;
+    }
+
+    #list-web-projects {
+        display: flex;
     }
 
     #experience {
