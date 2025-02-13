@@ -196,7 +196,7 @@ footer {
     margin-left: 1rem;
 }
 
-#important-links > div {
+.tooltip {
     align-items: center;
     display: flex;
     height: 46px;
@@ -205,12 +205,12 @@ footer {
     justify-content: center;
 }
 
-#important-links > div > a > svg {
+div > a > svg {
     height: 30px;
     width: 30px;
 }
 
-#important-links > div > a  {
+div > a  {
     display: flex;
 }
 
@@ -294,7 +294,7 @@ nav * {
 
 #summary {
     padding: 10px;
-    width: 250px;
+    width: 320px;
 }
 
 
@@ -319,8 +319,6 @@ nav * {
         width: 30px;
     }
     
-
-
     nav > h1 {
         flex-grow: 1;
         text-align: center;
@@ -364,6 +362,10 @@ nav * {
 
     .work-header {
         padding-left: 1rem;
+    }
+
+    .work {
+        padding-right: 1rem;
     }
 
 }
