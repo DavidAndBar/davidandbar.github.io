@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <h1> Calculate your loan </h1>
+<form id="menu-amortization">
+    <label for="pv">Present Value</label>
+    <input type="text" id="present_value" class="money" value="35000" required>
+    <label for="installments">Time (years)</label>
+    <input type="number" id="installments" value="1" required>
+    <label for="interest_value">Interest (%)</label>
+    <input type="number" id="interest_value" value="12.07" required>
+    <label for="interesttype">Interest type</label>
+    <select name="interesttype" id="compound_type" >
+    </select>
+    <label for="paymentsperiod">Payment period</label>
+    <select name="paymentsperiod" id="payments_period">
+    </select>
+    <div id="buttons">
+        <button type="submit" id="calculate" class="primary-btn">Calculate</button>
+        <button type="button" id="reset" style="display: none;" class="primary-btn">Reset</button>
+        <button type="button" id="additional-payment-btn" style="display: none;" class="primary-btn"> Add extra payment </button>
+    </div>
+</form>
+<span id="add-new-payment">
+        <div style="display: none;"> <p>When do you want to make an additional payment?</p>
+            <select name="select-add-pay-time" id="select-add-pay-time" onchange="show_max_payment()">
+            </select>
+            <p>Max payment: <span id="max-pay"></span></p>
+            <input type="number" id="input-max-pay" min="0" required >
+            <button type="button" onclick="add_add_pay()" class="primary-btn">Add</button>  
+        </div>
+        <div id="add-payments-interactive" style="display: none;">
+
+        </div>
+</span>
+<span id="results-amortization-summary"></span>
+<span id="results-amortization"></span>
+<script src="js/script.js"></script>
+</body>
+</html>
