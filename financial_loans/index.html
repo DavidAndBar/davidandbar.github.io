@@ -31,9 +31,10 @@
         <div style="display: none;"> <p>When do you want to make an additional payment?</p>
             <select name="select-add-pay-time" id="select-add-pay-time" onchange="show_max_payment()">
             </select>
-            <p>Max payment: <span id="max-pay"></span></p>
+            <p id="warning-max-pay" class="warning">Max payment: <span id="max-pay"></span></p>
             <input type="number" id="input-max-pay" min="0" required >
-            <button type="button" onclick="add_add_pay()" class="primary-btn">Add</button>  
+            <button type="button" onclick="add_add_pay()" class="primary-btn">Add</button>
+            <p id="warning-exceeds-value" class="warning" style="display: none;">You must enter a value lower than the max payment above. </span></p>
         </div>
         <div id="add-payments-interactive" style="display: none;">
 

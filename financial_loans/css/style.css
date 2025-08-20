@@ -167,3 +167,9 @@ span p {
     padding: 0;
 
 }
+
+.warning {
+    color: red;
+    margin-top: 0;
+    padding-top: 0;
+}

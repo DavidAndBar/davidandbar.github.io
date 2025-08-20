@@ -8,7 +8,7 @@ var payments_period ;
 var run_no = 0;
 var installment_no = 0;
 var initial_total_interest;
-
+var max_pay ;
 
 const COMPOUND = ["Yearly", 
              "Monthly", 
@@ -289,13 +289,14 @@ document.getElementById('reset').addEventListener('click', function (e) {
     del_result("results-amortization-summary");
     document.querySelector("#add-new-payment div").style.display = "none";
     document.querySelector("#add-payments-interactive").style.display = "none";
-    document.getElementById("present_value").value = 100000;
+    document.getElementById("present_value").value = parseFloat(present_value);
     additional_payments = [];
     run_no = 0;
     // Enable form
-    document.querySelectorAll("#menu-amortization input").forEach(el => {
+    document.querySelectorAll("#menu-amortization input, #menu-amortization select").forEach(el => {
         el.disabled = false;
     })
+
 });
 
 document.getElementById('additional-payment-btn').addEventListener('click', function (e) {
@@ -316,9 +317,9 @@ const add_payments_options = (installment_no)=>{
 
 
 const show_max_payment = ()=>{
-    let e = document.getElementById("select-add-pay-time").value
+    let e = document.getElementById("select-add-pay-time").value;
     document.getElementById("max-pay").innerHTML = `${formatter.format(balances[e])}`
-    document.getElementById("input-max-pay").max = balances[e];
+    max_pay = parseFloat(balances[e]);
 } 
 
 const delete_add_payment = (e)=>{
@@ -362,17 +363,27 @@ const update_additional_payments = () => {
 }
 
 const add_add_pay = () => {
-    
-    //Clears the div to recreate the added payments
-    document.getElementById("add-payments-interactive").innerHTML = ""; 
-    
-    // Adds the new additional payment to the tracker
-    let time = document.getElementById("select-add-pay-time").value
     let amount = document.getElementById("input-max-pay").value
-    additional_payments.push([time, amount])
+   
+    if(parseFloat(amount) <= max_pay){
+        //Clears the div to recreate the added payments
+        document.getElementById("add-payments-interactive").innerHTML = ""; 
+        
+        // Adds the new additional payment to the tracker
+        let time = document.getElementById("select-add-pay-time").value
+        additional_payments.push([time, amount])
 
-    recalculate();
+        // Clears the input for add payment and clears warnings
+        document.getElementById("input-max-pay").value = ""
+        document.getElementById("warning-exceeds-value").style.display="none";
 
-    update_additional_payments();
+        // Recalculate summary and amortization table
+        recalculate();
+
+        update_additional_payments();
+    } else {
+        document.getElementById("warning-exceeds-value").style.display="block";
+    }
+    
 
 }
