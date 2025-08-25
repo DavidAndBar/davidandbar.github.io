@@ -5,6 +5,7 @@
 
 * {
     font-family: 'Segoe UI', sans-serif;
+    box-sizing: border-box;
 }
 
 h1, h2 {
@@ -119,7 +120,10 @@ span p {
 /* Responsive design */
 @media (max-width: 480px) {
     #menu-amortization {
-        padding: 1.5rem;
+        padding: 1rem;
+    }
+    #menu-amortization input, #menu-amortization select {
+        width: 100%;
     }
 }
 
