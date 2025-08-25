@@ -11,10 +11,13 @@
 <form id="menu-amortization">
     <label for="pv">Present Value</label>
     <input type="text" id="present_value" class="money" value="35000" required>
+    <p id="warning-pv" class="warning warning-pop" style="display: none;">You must enter a positive number.</span></p>
     <label for="installments">Time (years)</label>
     <input type="number" id="installments" value="1" required>
+    <p id="warning-installments" class="warning warning-pop" style="display: none;">You must enter a positive number.</span></p>
     <label for="interest_value">Interest (%)</label>
     <input type="number" id="interest_value" value="12.07" required>
+    <p id="warning-interest" class="warning warning-pop" style="display: none;">You must enter a positive number.</span></p>
     <label for="interesttype">Interest type</label>
     <select name="interesttype" id="compound_type" >
     </select>
@@ -34,7 +37,7 @@
             <p id="warning-max-pay" class="warning">Max payment: <span id="max-pay"></span></p>
             <input type="number" id="input-max-pay" min="0" required >
             <button type="button" onclick="add_add_pay()" class="primary-btn">Add</button>
-            <p id="warning-exceeds-value" class="warning" style="display: none;">You must enter a value lower than the max payment above. </span></p>
+            <p id="warning-exceeds-value" class="warning warning-pop" style="display: none;">You must enter a value between 0 and the max payment above. </span></p>
         </div>
         <div id="add-payments-interactive" style="display: none;">
 

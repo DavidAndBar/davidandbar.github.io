@@ -263,45 +263,11 @@ const calculate_amortization = (interest_value_gross, compound_type, present_val
     return [installment_no, periodic_payment_teo, interest_paid];
 }
 
-document.getElementById('calculate').addEventListener('click', function (e) {
-    e.preventDefault();
-    interest_value_gross = parseFloat(document.getElementById("interest_value").value/100)
-    compound_type = document.getElementById("compound_type").value
-    present_value = parseFloat(document.getElementById("present_value").value)
-    loan_time = parseInt(document.getElementById("installments").value)
-    payments_period = document.getElementById("payments_period").value
-    let interest_paid;
-
-    [installment_no, periodic_payment_teo, interest_paid] = calculate_amortization(interest_value_gross, compound_type, present_value, loan_time, payments_period, null, 1)
-    // Show summary table 
-    show_summary_table(periodic_payment_teo, interest_paid, present_value, 1);
-    // Save initial total interest
-    initial_total_interest = interest_paid;
-});
-
-document.getElementById('reset').addEventListener('click', function (e) {
-    this.style.display = "none"
-    document.getElementById("additional-payment-btn").style.display = "none";
-    document.querySelector("#add-new-payment div").style.display = "none";
-    
-    document.getElementById("calculate").style.display = "block";
-    del_result("results-amortization");
-    del_result("results-amortization-summary");
-    document.querySelector("#add-new-payment div").style.display = "none";
-    document.querySelector("#add-payments-interactive").style.display = "none";
-    document.getElementById("present_value").value = parseFloat(present_value);
-    additional_payments = [];
-    run_no = 0;
-    // Enable form
-    document.querySelectorAll("#menu-amortization input, #menu-amortization select").forEach(el => {
-        el.disabled = false;
-    })
-
-});
-
-document.getElementById('additional-payment-btn').addEventListener('click', function (e) {
-    add_payments_options(installment_no);
-});
+const clear_warnings = () => {
+    document.querySelectorAll(".warning-pop").forEach((el) => {
+            el.style.display = "none"
+        })
+}
 
 const add_payments_options = (installment_no)=>{
     document.querySelector("#add-new-payment div").style.display = "block";
@@ -365,7 +331,7 @@ const update_additional_payments = () => {
 const add_add_pay = () => {
     let amount = document.getElementById("input-max-pay").value
    
-    if(parseFloat(amount) <= max_pay){
+    if(parseFloat(amount) <= max_pay && parseFloat(amount) >= 0){
         //Clears the div to recreate the added payments
         document.getElementById("add-payments-interactive").innerHTML = ""; 
         
@@ -387,3 +353,60 @@ const add_add_pay = () => {
     
 
 }
+
+//Gives functionallity to the buttons
+
+document.getElementById('calculate').addEventListener('click', function (e) {
+    e.preventDefault();
+    interest_value_gross = parseFloat(document.getElementById("interest_value").value/100)
+    compound_type = document.getElementById("compound_type").value
+    present_value = parseFloat(document.getElementById("present_value").value)
+    loan_time = parseInt(document.getElementById("installments").value)
+    payments_period = document.getElementById("payments_period").value
+    if (isNaN(present_value) || present_value < 0) {
+        clear_warnings();
+        document.getElementById("warning-pv").style.display = "block";
+    } else if (isNaN(loan_time) || loan_time < 0) {
+        clear_warnings();
+        document.getElementById("warning-installments").style.display = "block"
+    } else if (isNaN(interest_value_gross) || interest_value_gross < 0) {
+        clear_warnings();
+        document.getElementById("warning-interest").style.display = "block"
+    } else {
+
+        clear_warnings();
+        let interest_paid;
+        [installment_no, periodic_payment_teo, interest_paid] = calculate_amortization(interest_value_gross, compound_type, present_value, loan_time, payments_period, null, 1)
+        // Show summary table 
+        show_summary_table(periodic_payment_teo, interest_paid, present_value, 1);
+        // Save initial total interest
+        initial_total_interest = interest_paid;
+    }
+    
+});
+
+document.getElementById('reset').addEventListener('click', function (e) {
+    clear_warnings();
+    this.style.display = "none"
+    document.getElementById("additional-payment-btn").style.display = "none";
+    document.querySelector("#add-new-payment div").style.display = "none";
+    
+    document.getElementById("calculate").style.display = "block";
+    del_result("results-amortization");
+    del_result("results-amortization-summary");
+    document.querySelector("#add-new-payment div").style.display = "none";
+    document.querySelector("#add-payments-interactive").style.display = "none";
+    document.getElementById("present_value").value = parseFloat(present_value);
+    additional_payments = [];
+    run_no = 0;
+    // Enable form
+    document.querySelectorAll("#menu-amortization input, #menu-amortization select").forEach(el => {
+        el.disabled = false;
+    })
+
+});
+
+document.getElementById('additional-payment-btn').addEventListener('click', function (e) {
+    add_payments_options(installment_no);
+});
+
