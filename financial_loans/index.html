@@ -9,7 +9,7 @@
 <body>
     <h1> Calculate your loan </h1>
 <form id="menu-amortization">
-    <label for="pv">Present Value</label>
+    <label for="pv">Present Value </label>
     <input type="text" id="present_value" class="money" value="35000" required>
     <p id="warning-pv" class="warning warning-pop" style="display: none;">You must enter a positive number.</span></p>
     <label for="installments">Time (years)</label>
@@ -44,7 +44,13 @@
         </div>
 </span>
 <span id="results-amortization-summary"></span>
-<span id="results-amortization"></span>
+<span id="results-amortization">
+    <div id="menu-tables">
+        <div id="table-1" class="show-button selected" style="display: none;" onclick="select(this, 1)">Amortization Schedule </div>
+        <div id="table-2" class="show-button" style="display: none;" onclick="select(this, 2)">Alternative Amortization Schedule </div>
+        <div id="table-all" class="show-button" style="display: none;" onclick="select(this, 'all')">Show all tables</div>
+    </div>
+</span>
 <script src="js/script.js"></script>
 </body>
 </html>

@@ -44,7 +44,7 @@ var balances = []
 
 var installments = 0;
 
-var additional_payments = [];
+var additional_payments = {};
 
 for (let i = 0; i < COMPOUND.length; i++) {
     document.getElementById("compound_type").innerHTML += `<option value="${COMPOUND[i]}">${COMPOUND[i]}</option>`
@@ -93,8 +93,17 @@ const del_result = (id) => {
 }
 
 const gen_amortization_table = (run_no) => {
+    let show_table = ``;
+    if (run_no == 2) {
+        document.getElementById("table-1").classList.forEach(el => {
+            if (el === 'selected') {
+                show_table += 'style="display: none"';
+            }
+        })
+    }
+    
     document.getElementById("results-amortization").innerHTML += `
-    <table id="table-amortization-${run_no}">
+    <table id="table-amortization-${run_no}" ${show_table}>
         <tbody id="amortization-${run_no}">
             <tr id="head-table">
                 <th>
@@ -141,16 +150,17 @@ const show_summary_table = (periodic_payment, interest_paid, capital, run_no) =>
     let sum_additional_payments = 0;
     let add_lines = ``
 
-    if (additional_payments){
-        for(let i=0; i<additional_payments.length; i++){
-            sum_additional_payments += parseFloat(additional_payments[i][1]);
-            add_lines+=`<p class="summary-par">On period ${additional_payments[i][0]}, ${formatter.format(additional_payments[i][1])} </p>`
+    if (Object.keys(additional_payments).length != 0){
+        for(let i=0; i<Object.keys(additional_payments).length; i++){
+            if (additional_payments[i] != 0) {
+                sum_additional_payments += parseFloat(additional_payments[i]);
+                add_lines+=`<p class="summary-par">On period ${i}, ${formatter.format(additional_payments[i])} </p>`
+            }
         }
-        
     }
 
     let summary_content = `<h2>Summary #${run_no}</h2>
-                                <div>
+                                <div class="summary-half">
                                     <p class="summary-par">Monthly payment: ${formatter.format(periodic_payment)}</p>
                                     <p class="summary-par">Total Interest Paid: ${formatter.format(interest_paid)}</p>
                                     ${run_no == 2 ? 
@@ -161,7 +171,7 @@ const show_summary_table = (periodic_payment, interest_paid, capital, run_no) =>
                                     ${add_lines}
                                     <p class="summary-par">Total Additional Payments: ${formatter.format(sum_additional_payments)}</p>
                                 </div>
-                                <div id="graph-summary">
+                                <div id="graph-summary" class="summary-half">
                                     <p><span class="pie-legend" style="background: ${colors.capital};"></span> Capital: ${capital_per} %</p>
                                     <p><span class="pie-legend" style="background: ${colors.interest};"></span> Interests: ${100-capital_per} %</p>
                                     <div id="amortization-graph-${run_no}" class="amortization-graph"></div>
@@ -170,7 +180,7 @@ const show_summary_table = (periodic_payment, interest_paid, capital, run_no) =>
     if (run_no == 2 && document.getElementById("summary-run-2")) {
             document.getElementById("summary-run-2").innerHTML = summary_content;
     } else {
-        summary.innerHTML += `<div id="summary-run-${run_no}">
+        summary.innerHTML += `<div id="summary-run-${run_no}" class="summary">
                                 ${summary_content}
                             </div>
                             `
@@ -228,15 +238,13 @@ const calculate_amortization = (interest_value_gross, compound_type, present_val
             interest_paid += interest;
             break;
         } else {
-            if (add_pay){
-                for (let i = 0; i<add_pay.length; i++) {
-                    if (add_pay[i][0] == installment_no){
-                        periodic_payment+=parseFloat(add_pay[i][1]);
-                    }
-                }
+            
+            
+            if (Object.keys(add_pay).length != 0) {
+                periodic_payment += add_pay[installment_no];
             }
             
-            [final_balance, capital, interest] = calc_next_pay(periodic_payment, amt_owed, interest_value)
+            [final_balance, capital, interest] = calc_next_pay(periodic_payment , amt_owed, interest_value)
             balances.push(final_balance);
             
             add_row(`amortization-${run_no}`, installment_no, amt_owed, periodic_payment, interest, capital, final_balance )
@@ -288,17 +296,29 @@ const show_max_payment = ()=>{
     max_pay = parseFloat(balances[e]);
 } 
 
-const delete_add_payment = (e)=>{
+const delete_add_payment = (e, amount)=>{
 
     document.getElementById(`add-payments-interactive`).innerHTML = ``;
-    let aux_additional_payments = [];
-    for (let i = 0; i<additional_payments.length; i++) {
-        if (i!=e.id.slice(8)){
-            aux_additional_payments.push([additional_payments[i][0], additional_payments[i][1]]);
+    
+    let add_pay_to_delete = e.id.slice(8);
+
+    additional_payments[add_pay_to_delete] -= amount;
+    
+    for (let i = 0; i < Object.keys(additional_payments).length ; i++) {
+        if(additional_payments[i] != 0){
+            console.log("for");
+            recalculate();
+            update_additional_payments();
+            return 0;
         }
     }
-    additional_payments = aux_additional_payments;
+
+    additional_payments = {};
+
+    document.getElementById("table-2").style.display = "none"
+    document.getElementById("table-all").style.display = "none"
     
+    select(document.getElementById(`table-1`), 1);
     recalculate();
     update_additional_payments();
 }
@@ -317,27 +337,43 @@ const recalculate = () => {
 
 const update_additional_payments = () => {
     // Show additional payments (interactive)
-    if(additional_payments){
+    console.log(additional_payments);
+    if(Object.keys(additional_payments).length != 0){
         document.getElementById("add-payments-interactive").style.display = "block"
     } else {
         document.getElementById("add-payments-interactive").style.display = "none"
     }
 
-    for (let i = 0; i < additional_payments.length; i++){
-        document.querySelector("#add-payments-interactive").innerHTML += `<p id="sum-pay-${i}"> Additional Payment #${i+1}. With Installment# ${additional_payments[i][0]}, amount: ${formatter.format(additional_payments[i][1])} <button id='payment-${i}' type="button" onclick="delete_add_payment(this)" class="delete-additional-payment">Delete</button></p>`
+    let j = 0;
+    for (let i = 0; i < Object.keys(additional_payments).length; i++){
+        if (additional_payments[i] != 0) {
+            document.querySelector("#add-payments-interactive").innerHTML += `<p id="sum-pay-${i}"> Additional Payment #${j+1}. Within Installment# ${i}, amount: ${formatter.format(additional_payments[i])} <button id='payment-${i}' type="button" onclick="delete_add_payment(this, ${additional_payments[i]})" class="delete-additional-payment">Delete</button></p>`
+            j++;
+        }
     }
 }
 
 const add_add_pay = () => {
-    let amount = document.getElementById("input-max-pay").value
-   
+    let amount = parseFloat(document.getElementById("input-max-pay").value)
+    
+    if (Object.keys(additional_payments).length === 0) {
+        for (let index = 0; index < installment_no; index++) {
+        additional_payments[index] = 0;
+        }
+    }
+    
+    
+
     if(parseFloat(amount) <= max_pay && parseFloat(amount) >= 0){
+        // Shows buttons to show tables
+        document.getElementById("table-2").style.display = "block"
+        document.getElementById("table-all").style.display = "block"
         //Clears the div to recreate the added payments
         document.getElementById("add-payments-interactive").innerHTML = ""; 
         
         // Adds the new additional payment to the tracker
         let time = document.getElementById("select-add-pay-time").value
-        additional_payments.push([time, amount])
+        additional_payments[time] += amount;
 
         // Clears the input for add payment and clears warnings
         document.getElementById("input-max-pay").value = ""
@@ -350,19 +386,54 @@ const add_add_pay = () => {
     } else {
         document.getElementById("warning-exceeds-value").style.display="block";
     }
-    
 
 }
+
+const filter_number = (num) => {
+    
+    let filtd_number = "";
+
+    let num_split = num.split("");
+
+    for (let i = 0; i<num_split.length; i++){
+        if(!isNaN(num_split[i]) || num_split[i] == "."){
+            filtd_number += num_split[i];
+        }
+    }
+    return parseFloat(filtd_number);
+}
+
+const select = (e, table) => {
+    document.querySelectorAll(".show-button").forEach(el => {
+        el.classList.remove('selected')
+    })
+    
+    e.classList.add('selected');
+
+    if (table === 'all') {
+        document.getElementById(`table-amortization-1`).style.display = 'table';
+        document.getElementById(`table-amortization-2`).style.display = 'table';
+    } else if (table==1){
+        document.getElementById(`table-amortization-1`).style.display = 'table';
+        document.getElementById(`table-amortization-2`).style.display = 'none';
+    } if (table==2){
+        document.getElementById(`table-amortization-2`).style.display = 'table';
+        document.getElementById(`table-amortization-1`).style.display = 'none';
+    }
+}
+
 
 //Gives functionallity to the buttons
 
 document.getElementById('calculate').addEventListener('click', function (e) {
     e.preventDefault();
-    interest_value_gross = parseFloat(document.getElementById("interest_value").value/100)
-    compound_type = document.getElementById("compound_type").value
-    present_value = parseFloat(document.getElementById("present_value").value)
-    loan_time = parseInt(document.getElementById("installments").value)
-    payments_period = document.getElementById("payments_period").value
+    
+    interest_value_gross = filter_number(document.getElementById("interest_value").value)/100;
+    compound_type = document.getElementById("compound_type").value;
+    present_value = filter_number(document.getElementById("present_value").value);
+    loan_time = filter_number(document.getElementById("installments").value);
+    payments_period = document.getElementById("payments_period").value;
+    
     if (isNaN(present_value) || present_value < 0) {
         clear_warnings();
         document.getElementById("warning-pv").style.display = "block";
@@ -373,16 +444,19 @@ document.getElementById('calculate').addEventListener('click', function (e) {
         clear_warnings();
         document.getElementById("warning-interest").style.display = "block"
     } else {
-
+        document.getElementById("table-1").style.display = "block"
+        document.getElementById("interest_value").value = interest_value_gross*100;
+        document.getElementById("present_value").value = present_value;
+        document.getElementById("installments").value = loan_time;
         clear_warnings();
         let interest_paid;
-        [installment_no, periodic_payment_teo, interest_paid] = calculate_amortization(interest_value_gross, compound_type, present_value, loan_time, payments_period, null, 1)
+        [installment_no, periodic_payment_teo, interest_paid] = calculate_amortization(interest_value_gross, compound_type, present_value, loan_time, payments_period, additional_payments, 1)
         // Show summary table 
         show_summary_table(periodic_payment_teo, interest_paid, present_value, 1);
         // Save initial total interest
         initial_total_interest = interest_paid;
     }
-    
+
 });
 
 document.getElementById('reset').addEventListener('click', function (e) {
@@ -390,6 +464,9 @@ document.getElementById('reset').addEventListener('click', function (e) {
     this.style.display = "none"
     document.getElementById("additional-payment-btn").style.display = "none";
     document.querySelector("#add-new-payment div").style.display = "none";
+    document.querySelectorAll(".show-button").forEach( el => {
+        el.style.display = "none";
+    })
     
     document.getElementById("calculate").style.display = "block";
     del_result("results-amortization");
@@ -397,7 +474,7 @@ document.getElementById('reset').addEventListener('click', function (e) {
     document.querySelector("#add-new-payment div").style.display = "none";
     document.querySelector("#add-payments-interactive").style.display = "none";
     document.getElementById("present_value").value = parseFloat(present_value);
-    additional_payments = [];
+    additional_payments = {};
     run_no = 0;
     // Enable form
     document.querySelectorAll("#menu-amortization input, #menu-amortization select").forEach(el => {
